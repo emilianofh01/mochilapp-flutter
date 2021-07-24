@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mochilapp/src/validator/EmailValidator.dart';
 import 'package:mochilapp/src/widgets/Login/IconlargeButton_widget.dart';
 import 'package:mochilapp/src/widgets/Login/button_widget.dart';
 import 'package:mochilapp/src/widgets/Login/loginNavButton.dart';
@@ -18,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isOnFirstOption = true;
   static int widthScaling = 411;
   static int heightScaling = 823;
-  String _email = "";
+  EmailValidator _email = new EmailValidator();
   String _password = "";
   TextEditingController emailController = TextEditingController();
 
@@ -284,9 +285,13 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomTextField(
-                  onChanged: (String value) => _email = value,
+                  onChanged: (w) {
+                    _email.setValue(w);
+                    setState(() {});
+                  },
                   screenSize: screenSize,
                   text: 'Correo electronico',
+                  validation: _email.isValid(),
                   keyboardEvent: _keyboardIsVisible,
                   textInputType: TextInputType.emailAddress,
                 ),
@@ -473,12 +478,14 @@ class _LoginPageState extends State<LoginPage> {
     if (accountExist()) {
       print("$_email - $_password");
     } else {
+      /*
       setState(() {
         FocusScope.of(context).requestFocus(new FocusNode());
-        emailController.text = _email;
+        emailController.text = _email.getValue();
         changeOptionLogin();
         changeOptionsPage(goToSecondOption: true);
       });
+      */
     }
   }
 }

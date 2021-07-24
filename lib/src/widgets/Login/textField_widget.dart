@@ -9,14 +9,17 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? textInputType;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
+  final bool? validation;
 
-  CustomTextField(
-      {@required this.screenSize,
-      @required this.text,
-      @required this.keyboardEvent,
-      @required this.textInputType,
-      @required this.onChanged,
-      this.controller});
+  CustomTextField({
+    @required this.screenSize,
+    @required this.text,
+    @required this.keyboardEvent,
+    @required this.textInputType,
+    @required this.onChanged,
+    this.controller,
+    this.validation: true,
+  });
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -50,7 +53,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
           boxShadow: focusNode.hasFocus
               ? [
                   BoxShadow(
-                    color: Color.fromRGBO(1, 187, 107, 1),
+                    color: widget.validation!
+                        ? Color.fromRGBO(1, 187, 107, 1)
+                        : Color.fromRGBO(255, 0, 0, 1),
                     spreadRadius: 0.0,
                     blurRadius: 6.0,
                   )
