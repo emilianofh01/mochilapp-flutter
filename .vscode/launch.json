@@ -1,0 +1,61 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Current Device: Debug",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "debug"
+      },
+      {
+        "name": "Current Device: Profile",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "profile"
+      },
+      {
+        "name": "Current Device: Release Mode",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "release"
+      },
+      {
+        "name": "Debug: MI 9",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "ecb56764",
+        "flutterMode": "debug"
+      },
+      {
+        "name": "Release: MI 9",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "ecb56764",
+        "flutterMode": "release"
+      },
+      {
+        "name": "Debug: M5Plus",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "FISOZS59TSZS9DS8",
+        "flutterMode": "debug"
+      },
+      {
+        "name": "Release: M5Plus",
+        "request": "launch",
+        "type": "dart",
+        "deviceId": "FISOZS59TSZS9DS8",
+        "flutterMode": "release"
+      },
+    ],
+    "compounds": [
+      {
+        "name": "Debug: All Mobile",
+        "configurations": ["Debug: MI 9", "Debug: M5Plus"],
+      },
+      {
+        "name": "Release: All Mobile",
+        "configurations": ["Release: MI 9", "Release: M5Plus"],
+      },
+    ]
+  }
