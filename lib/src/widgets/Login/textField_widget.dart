@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatefulWidget {
   final Size? screenSize;
   static int widthScaling = 411;
@@ -11,6 +12,8 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
   final bool? validation;
 
+  bool error = false;
+
   CustomTextField({
     @required this.screenSize,
     @required this.text,
@@ -19,6 +22,7 @@ class CustomTextField extends StatefulWidget {
     @required this.onChanged,
     this.controller,
     this.validation: true,
+    this.error = false,
   });
 
   @override
@@ -76,13 +80,21 @@ class _CustomTextFieldState extends State<CustomTextField> {
         //textAlignVertical: TextAlignVertical.center,
         focusNode: focusNode,
         decoration: InputDecoration(
+          suffixIcon: widget.error
+              ? Icon(
+                  Icons.info_outline,
+                  color: Colors.red,
+                )
+              : null,
+          suffixStyle: TextStyle(color: Colors.red),
           //suffix: Icon(Icons.remove_red_eye),
           hintStyle: TextStyle(
-              fontFamily: 'MulishBold',
-              fontSize: 15,
-              color: Color.fromRGBO(181, 181, 181, 1)),
+            fontFamily: 'MulishBold',
+            fontSize: 15,
+            color: Color.fromRGBO(181, 181, 181, 1),
+          ),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           hintText: '${widget.text}',
         ),
         onChanged: widget.onChanged,
