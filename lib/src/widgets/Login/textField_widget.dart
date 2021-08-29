@@ -65,12 +65,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   )
                 ]
               : null,
-          color: Colors.white,
+          color: Theme.of(context).inputDecorationTheme.fillColor,
           borderRadius: BorderRadius.circular(5)),
       duration: Duration(milliseconds: 250),
       child: TextField(
         controller: widget.controller,
         style: TextStyle(
+            color: Theme.of(context).hintColor,
             fontFamily: 'MulishBold',
             fontSize: widget.screenSize!.height * (15 / 823)),
         obscureText: widget.textInputType == TextInputType.visiblePassword
@@ -91,7 +92,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           hintStyle: TextStyle(
             fontFamily: 'MulishBold',
             fontSize: 15,
-            color: Color.fromRGBO(181, 181, 181, 1),
+            color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
           ),
           border: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mochilapp/src/widgets/Login/LoginFields_widget.dart';
 import 'package:mochilapp/src/widgets/Login/tenth_widget.dart';
+import 'package:system_info/system_info.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,21 +25,24 @@ class _LoginPageState extends State<LoginPage> {
     final screenSize = MediaQuery.of(context).size;
     this.brightness = MediaQuery.of(context).platformBrightness;
     this.isDarkMode = brightness == Brightness.dark;
+    final String physicalMemory =
+        SysInfo.processors.first.architecture.toString().toLowerCase();
 
+    final bool isSpecLow =
+        physicalMemory == "aarch64" || physicalMemory == "arm64" ? true : false;
+
+    print(physicalMemory);
     checkDarkMode(context);
 
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
-        //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: [SystemUiOverlay.top]);
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: isDarkMode
-            ? Color.fromRGBO(36, 36, 36, 1)
-            : Color.fromRGBO(242, 242, 242, 1),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Stack(children: [
-          TentWidget(),
+          isSpecLow ? TentWidget(isDarkMode: isDarkMode) : Container(),
           LoginFields(),
           Align(
             // Titulo de bienvenida
@@ -53,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: RichText(
                   text: TextSpan(
                     style: TextStyle(
-                        color: Color.fromRGBO(51, 50, 50, 1),
+                        color: Theme.of(context).textTheme.headline1!.color,
                         //fontSize: 44,
                         fontFamily: 'MulishRegular'),
                     children: [

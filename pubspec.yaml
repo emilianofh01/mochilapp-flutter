@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.22.0
   http: ^0.13.3
+  system_info: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,7 @@ flutter:
     - assets/svg/facebook.svg
     - assets/svg/google.svg
     - assets/svg/tent.svg
+    - assets/svg/tentDark.svg
     
   fonts:
     - family: MulishBlack
