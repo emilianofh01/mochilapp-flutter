@@ -43,6 +43,7 @@ class _LoginFieldsState extends State<LoginFields> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+
     return Stack(children: [
       AnimatedAlign(
         alignment:
@@ -444,7 +445,7 @@ class _LoginFieldsState extends State<LoginFields> {
         errorPassword = true;
       });
     }
-    if (_email.value.length == 0) {
+    if (!_email.isValid()) {
       setState(() {
         errorEmail = true;
       });

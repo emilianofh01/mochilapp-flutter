@@ -31,6 +31,7 @@ dependencies:
   flutter_svg: ^0.22.0
   http: ^0.13.3
   system_info: ^1.0.1
+  rive: ^0.7.28
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,7 @@ flutter:
     - assets/svg/google.svg
     - assets/svg/tent.svg
     - assets/svg/tentDark.svg
+    - assets/vehicles.riv
     
   fonts:
     - family: MulishBlack

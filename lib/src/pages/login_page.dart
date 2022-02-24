@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Stack(children: [
-          isSpecLow ? TentWidget(isDarkMode: isDarkMode) : Container(),
+          TentWidget(isDarkMode: isDarkMode),
           LoginFields(),
           Align(
             // Titulo de bienvenida

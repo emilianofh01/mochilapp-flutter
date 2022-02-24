@@ -11,6 +11,8 @@ class CustomTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final bool? validation;
+  Brightness brightness = Brightness.light;
+  bool isDarkMode = false;
 
   bool error = false;
 
@@ -31,6 +33,8 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   FocusNode focusNode = new FocusNode();
+  Brightness brightness = Brightness.light;
+  bool isDarkMode = false;
 
   @override
   void initState() {
@@ -46,6 +50,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
+    this.brightness = MediaQuery.of(context).platformBrightness;
+    this.isDarkMode = brightness == Brightness.dark;
     return AnimatedContainer(
       width: !focusNode.hasFocus
           ? widget.screenSize!.width * 319 / CustomTextField.widthScaling
@@ -81,12 +87,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
         //textAlignVertical: TextAlignVertical.center,
         focusNode: focusNode,
         decoration: InputDecoration(
-          suffixIcon: widget.error
-              ? Icon(
-                  Icons.info_outline,
-                  color: Colors.red,
-                )
-              : null,
+          suffixIcon: AnimatedOpacity(
+            duration: Duration(milliseconds: 150),
+            opacity: widget.error ? 1 : 0,
+            child: Icon(
+              isDarkMode ? Icons.info_outline : Icons.info,
+              color: Colors.red,
+            ),
+          ),
+          // widget.error
+          //     ? Icon(
+          //         Icons.info_outline,
+          //         color: Colors.red,
+          //       )
+          //     : null,
           suffixStyle: TextStyle(color: Colors.red),
           //suffix: Icon(Icons.remove_red_eye),
           hintStyle: TextStyle(

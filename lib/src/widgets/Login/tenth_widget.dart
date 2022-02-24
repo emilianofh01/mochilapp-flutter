@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rive/rive.dart';
 
 // class TentWidget extends StatefulWidget {
 //   @override
 //   _TentWidgetState createState() => _TentWidgetState();
 // }
 
-class TentWidget extends StatelessWidget {
+class TentWidget extends StatefulWidget {
   final bool? isDarkMode;
 
   TentWidget({@required this.isDarkMode});
 
   @override
+  State<TentWidget> createState() => _TentWidgetState();
+}
+
+class _TentWidgetState extends State<TentWidget> {
+  @override
   Widget build(BuildContext context) {
     print("Casa de camapaña repaint");
     final screenSize = MediaQuery.of(context).size;
-    final SvgPicture tent = isDarkMode!
+    final SvgPicture tent = widget.isDarkMode!
         ? SvgPicture.asset('assets/svg/tentDark.svg')
         : SvgPicture.asset('assets/svg/tent.svg');
 
@@ -30,7 +36,7 @@ class TentWidget extends StatelessWidget {
           //decoration: BoxDecoration(border: Border.all(color: Colors.red)),
           width: screenSize.width * (304 / 411),
           height: screenSize.height * (236 / 823),
-          child: tent, //TentPath(),
+          child: RiveAnimation.asset("assets/vehicles.riv"), //TentPath(),
         ),
       ),
     );
